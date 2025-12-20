@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Catatan K3 Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Pengaturan Font Normal agar mudah dibaca */
+        body { font-size: 16px; line-height: 1.6; color: #333; }
+        .card p, .card li { font-size: 16px; margin-bottom: 12px; }
+        .section-title { color: #a52a2a; border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 25px; }
+        .detail-item { background: #ffffff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .example-tag { background: #fff4f4; border-left: 4px solid #a52a2a; padding: 10px 15px; margin-top: 10px; font-style: italic; color: #555; }
+        .law-tag { display: inline-block; background: #eef; color: #337; padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="mobile-header">
+            <div class="logo-mobile">Buku K3 Digital</div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <div class="logo"><h2>Buku K3 Digital</h2></div>
+            <div style="padding: 0 10px 15px 10px;">
+                <input type="text" id="searchInput" onkeyup="searchMenu()" placeholder="Cari materi..." 
+                    style="width: 100%; padding: 10px; border-radius: 8px; border: none; outline: none; background: rgba(255,255,255,0.15); color: white; font-size: 14px;">
+            </div>
+            <ul id="menuList">
+                <li><a href="#" class="nav-link active" onclick="showPage(event, 'beranda')">Beranda</a></li>
+                <li class="daftar-isi-container">
+                    <div class="daftar-isi-btn" onclick="toggleDaftarIsi()">
+                        <span>DAFTAR ISI MATERI</span>
+                        <div class="hamburger-mini"><span></span><span></span><span></span></div>
+                    </div>
+                    <ul class="dropdown-content" id="materiDropdown" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd;">
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'dasar-k3-detail')">1. DASAR-DASAR K3</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'metode-k3-detail')">2. METODE (PDCA, JSA, HIRADC)</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'safety-tbm-detail')">3. SAFETY MEETING & TBM</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'hirapa-aspek-detail')">4. HI-RA-PA & ASPEK BAHAYA</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'confined-space-detail')">5. RUANG TERBATAS & TANKI</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'b3-materi-detail')">6. PENGELOLAAN B3</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'ketinggian-materi-detail')">7. KERJA DI KETINGGIAN</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'scaffoldingdanstopper-materi-detail')">8. SCAFFOLDING & STOPPER</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'pesawat-uap-detail')">9. PESAWAT UAP & BEJANA TEKAN</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'analisis-lgp-detail')">10. ANALISIS LGP & TENAGA TEKNIS</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'pesawat-k3-detail')">11. PESAWAT ANGAT ANGKUT</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'sanksi-k3-detail')">12. SANKSI HUKUM K3</a></li>
+                        <li><a href="#" class="nav-link sub" onclick="showPage(event, 'investigasi-detail')">13. INVESTIGASI KECELAKAAN</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="nav-link" onclick="showPage(event, 'landasan')">Landasan Hukum</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <section id="beranda" class="page active">
+        <div style="background: linear-gradient(135deg, #4a0e0e 0%, #a52a2a 100%); padding: 40px 25px; border-radius: 20px; color: white; margin-bottom: -60px; box-shadow: 0 10px 30px rgba(165, 42, 42, 0.3);">
+            <h1 style="margin: 0; font-size: 28px; letter-spacing: 1px; display: flex; align-items: center; gap: 15px;">
+                <span style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 12px;">🛡️</span> 
+                Profil Ahli K3 Umum Digital
+            </h1>
+            <p style="opacity: 0.9; margin-top: 10px; font-weight: 300;">Mengintegrasikan Keselamatan Kerja dengan Era Transformasi Digital</p>
+        </div>
+
+        <div class="card" style="margin-top: 0; padding-top: 80px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            
+            <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 35px; border-left: 8px solid #a52a2a;">
+                <div style="position: relative;">
+                    <img src="image/fotoku.jpg" alt="Ahli K3" style="border-radius: 20px; width: 140px; height: 140px; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15); object-fit: cover; display: block;">
+                    <div style="position: absolute; bottom: -10px; right: -10px; background: #27ae60; color: white; padding: 5px 12px; border-radius: 10px; font-size: 10px; font-weight: bold; border: 2px solid white;">ONLINE</div>
+                </div>
+                
+                <div style="flex: 1; min-width: 280px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: bold;">AK3U VERIFIED</span>
+                        <span style="background: #fff3e0; color: #ef6c00; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: bold;">BATCH 2025</span>
+                    </div>
+                    <p style="line-height: 1.8; font-size: 16px; color: #444; margin-bottom: 15px;">
+                        <strong>Ahli K3 Umum</strong> adalah perpanjangan tangan <strong>Kemnaker RI</strong> yang memiliki wewenang khusus dalam mengawasi dan memastikan implementasi norma keselamatan di tempat kerja demi tercapainya <i>Zero Accident</i>.
+                    </p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="background: #4a0e0e; color: white; padding: 8px 18px; border-radius: 10px; font-size: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(74, 14, 14, 0.3);">SKP KEMNAKER RI</span>
+                        <span style="border: 1px solid #a52a2a; color: #a52a2a; padding: 7px 17px; border-radius: 10px; font-size: 12px; font-weight: bold;">COMPETENCE CERTIFIED</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; border-bottom: 3px solid #a52a2a;">
+                    <div style="font-size: 24px; font-weight: bold; color: #4a0e0e;">100%</div>
+                    <div style="font-size: 12px; color: #777; text-transform: uppercase;">Compliance</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; border-bottom: 3px solid #27ae60;">
+                    <div style="font-size: 24px; font-weight: bold; color: #27ae60;">0 Rate</div>
+                    <div style="font-size: 12px; color: #777; text-transform: uppercase;">Fatality Case</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 15px; border-bottom: 3px solid #2980b9;">
+                    <div style="font-size: 24px; font-weight: bold; color: #2980b9;">Digital</div>
+                    <div style="font-size: 12px; color: #777; text-transform: uppercase;">Monitoring</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                <div style="background: #ffffff; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: transform 0.3s;">
+                    <div style="background: #fff0f0; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px;">📑</div>
+                    <h3 style="color: #4a0e0e; margin-bottom: 15px; font-size: 19px;">Tugas Strategis</h3>
+                    <ul style="padding-left: 18px; font-size: 14px; line-height: 1.8; color: #555;">
+                        <li>Identifikasi bahaya & penilaian risiko (HIRADC).</li>
+                        <li>Audit internal & inspeksi rutin terpadu.</li>
+                        <li>Analisis statistik kecelakaan & investigasi.</li>
+                    </ul>
+                </div>
+
+                <div style="background: #ffffff; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
+                    <div style="background: #eef2ff; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px;">⚖️</div>
+                    <h3 style="color: #4a0e0e; margin-bottom: 15px; font-size: 19px;">Wewenang Hukum</h3>
+                    <ul style="padding-left: 18px; font-size: 14px; line-height: 1.8; color: #555;">
+                        <li>Akses penuh ke seluruh area operasional.</li>
+                        <li>Penghentian pekerjaan yang membahayakan nyawa.</li>
+                        <li>Pemeriksaan dokumen kelaikan alat (SILO/SIO).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; padding: 20px; background: #fffbe6; border: 1px dashed #ffe58f; border-radius: 12px; text-align: center;">
+                <p style="font-size: 14px; color: #856404; margin: 0; font-weight: 500;">
+                    <span style="margin-right: 10px;">🚀</span> Menuju Implementasi <strong>E-K3 (Electronic Occupational Health and Safety)</strong> untuk efisiensi pelaporan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+            <section id="dasar-k3-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Dasar-Dasar K3</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Dasar-Dasar K3 adalah</strong> suatu pemikiran dan upaya untuk menjamin keutuhan dan kesempurnaan jasmani maupun rohani tenaga kerja pada khususnya, dan manusia pada umumnya, serta hasil karya dan budaya menuju masyarakat adil dan makmur.</p>
+                        
+                        <p>Secara keilmuan, K3 adalah ilmu pengetahuan dan penerapannya dalam usaha mencegah kemungkinan terjadinya:</p>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Kecelakaan Kerja:</strong> Kejadian yang tidak diinginkan yang menimbulkan cedera atau kerusakan.</li>
+                            <li><strong>Penyakit Akibat Kerja (PAK):</strong> Gangguan kesehatan akibat faktor lingkungan kerja.</li>
+                            <li><strong>Kebakaran & Peledakan:</strong> Akibat kegagalan pengendalian energi atau bahan kimia.</li>
+                            <li><strong>Pencemaran Lingkungan:</strong> Dampak operasional terhadap ekosistem sekitar.</li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #f0f7ff; border-left: 4px solid #007bff; padding: 15px; margin: 15px 0;">
+                        <strong style="color: #004085;">Contoh Penerapan Fundamental K3:</strong>
+                        <ul style="margin-top: 10px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 10px;">
+                                <strong>1. Engineering Control (Teknis):</strong> Pemasangan <i>safety guard</i> (penutup) pada mesin yang berputar agar tangan pekerja tidak terjepit.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>2. Segregasi Jalur:</strong> Pembuatan tanda kuning permanen di lantai untuk memisahkan jalur pejalan kaki dengan jalur lalu lintas Forklift di area gudang.
+                            </li>
+                            <li>
+                                <strong>3. Budaya 5S/5R:</strong> Penerapan Ringkas, Rapi, Resik, Rawat, Rajin untuk memastikan area kerja bebas dari hambatan yang bisa menyebabkan tersandung (Trip hazard).
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <div class="law-tag">LANDASAN HUKUM UTAMA</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px; border-left: 4px solid #337;">
+                        <strong>UU No. 1 Tahun 1970 Pasal 3:</strong> Menetapkan syarat-syarat keselamatan kerja yang meliputi pencegahan kecelakaan, kebakaran, pemberian pertolongan pertama (P3K), dan penyediaan alat pelindung diri bagi tenaga kerja.
+                    </p>
+                </div>
+            </section>
+
+            <section id="metode-k3-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Metode Manajemen Risiko & Pengendalian</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>PDCA (Plan-Do-Check-Act) adalah</strong> metode siklus manajemen berkelanjutan untuk memastikan program K3 direncanakan dengan matang, dijalankan sesuai prosedur, dievaluasi kendalanya, dan diperbaiki secara sistematis agar standar keselamatan terus meningkat.</p>
+                        
+                        <div class="example-tag" style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px;">
+                            <strong>Penjelasan & Komponen PDCA:</strong>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li><strong>Plan (Rencana):</strong> Menetapkan tujuan K3, kebijakan, dan identifikasi potensi bahaya di awal proyek.</li>
+                                <li><strong>Do (Laksanakan):</strong> Menerapkan rencana kerja dan kontrol bahaya yang telah dibuat ke dalam aktivitas lapangan.</li>
+                                <li><strong>Check (Periksa):</strong> Memantau hasil kerja, melakukan inspeksi, dan membandingkan hasil dengan target awal.</li>
+                                <li><strong>Act (Tindak Lanjut):</strong> Mengambil tindakan koreksi atas temuan yang menyimpang untuk perbaikan di siklus berikutnya.</li>
+                            </ul>
+                            <hr style="border: 0; border-top: 1px solid #bdd7ee; margin: 10px 0;">
+                            <strong>Contoh:</strong> Pengelolaan Kebakaran di Kantor. 
+                            <i>Plan:</i> Merancang jalur evakuasi. <i>Do:</i> Memasang rambu evakuasi. <i>Check:</i> Melakukan simulasi kebakaran dan mencatat waktu evakuasi. <i>Act:</i> Memperlebar pintu keluar karena hasil simulasi menunjukkan adanya penumpukan orang.
+                        </div>
+                    </div>
+                    
+            
+                    <div class="detail-item">
+                        <p><strong>JSA (Job Safety Analysis) adalah</strong> metode sistematis untuk mengidentifikasi potensi bahaya pada setiap tahapan pekerjaan secara berurutan guna menentukan pengendalian yang tepat sebelum pekerjaan dimulai.</p>
+                        
+                        <div class="example-tag" style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px;">
+                            <strong>Penjelasan & Langkah Kerja JSA:</strong>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li>Memilih pekerjaan yang memiliki risiko tinggi atau baru pertama dilakukan.</li>
+                                <li>Menguraikan pekerjaan menjadi langkah-langkah tugas yang berurutan.</li>
+                                <li>Mengidentifikasi potensi bahaya (fisik, mekanik, listrik) di setiap langkah tersebut.</li>
+                                <li>Menyusun instruksi kerja aman sebagai langkah pencegahan.</li>
+                            </ul>
+                            <hr style="border: 0; border-top: 1px solid #c8e6c9; margin: 10px 0;">
+                            <strong>Contoh:</strong> Pekerjaan Mengganti Lampu Jalan. 
+                            <i>Langkah 1:</i> Mendirikan tangga. <i>Bahaya:</i> Tangga tidak stabil/slip. <i>Kontrol:</i> Cek kondisi karet kaki tangga dan gunakan bantuan orang lain untuk memegangi bawah tangga.
+                        </div>
+                    </div>
+            
+                    <div class="detail-item">
+                        <p><strong>JHA (Job Hazard Analysis) adalah</strong> metode analisis bahaya yang lebih luas dari JSA, dengan fokus pada interaksi menyeluruh antara pekerja, tugas yang diberikan, peralatan yang digunakan, dan kondisi lingkungan kerja.</p>
+                        
+                        <div class="example-tag" style="background: #f3e5f5; border-left: 4px solid #9c27b0; padding: 15px;">
+                            <strong>Penjelasan Fokus JHA:</strong>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li><strong>Pekerja:</strong> Menilai kesiapan fisik, mental, dan kompetensi personel.</li>
+                                <li><strong>Alat:</strong> Menilai kelaikan dan pengamanan mesin atau perkakas yang digunakan.</li>
+                                <li><strong>Lingkungan:</strong> Menganalisis gangguan dari suhu, cuaca, kebisingan, atau pencahayaan area kerja.</li>
+                            </ul>
+                            <hr style="border: 0; border-top: 1px solid #e1bee7; margin: 10px 0;">
+                            <strong>Contoh:</strong> Operasional Mesin Bubut di Workshop. 
+                            JHA menganalisis bukan hanya cara memotong besi, tapi juga apakah suhu ruangan yang terlalu panas membuat konsentrasi operator menurun, atau apakah kebisingan mesin menghalangi pendengaran instruksi darurat.
+                        </div>
+                    </div>
+            
+                    <div class="detail-item">
+                        <p><strong>HIRADC adalah</strong> (Hazard Identification, Risk Assessment, and Determining Control) metode komprehensif untuk memetakan seluruh bahaya, menilai tingkat risiko berdasarkan frekuensi dan dampak, serta menetapkan langkah pengendaliannya.</p>
+                        
+                        <div class="example-tag" style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 15px;">
+                            <strong>Penjelasan Alur HIRADC:</strong>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li><strong>HI:</strong> Inventarisasi semua sumber bahaya di satu departemen (misal: kabel menjuntai).</li>
+                                <li><strong>RA:</strong> Memberikan skor risiko (Sering terjadi x Dampak Cidera). Jika skor tinggi, maka prioritas utama.</li>
+                                <li><strong>DC:</strong> Menetapkan metode kontrol sesuai tingkat bahaya (misal: perbaikan instalasi).</li>
+                            </ul>
+                            <hr style="border: 0; border-top: 1px solid #ffe0b2; margin: 10px 0;">
+                            <strong>Contoh:</strong> Area Gudang Logistik. 
+                            <i>HI:</i> Pengoperasian Forklift di area sempit. <i>RA:</i> Risiko tertabrak (Likelihood: 4, Severity: 5 = 20/High Risk). <i>DC:</i> Pemasangan kaca cembung di sudut ruangan dan pembatasan kecepatan forklift.
+                        </div>
+                    </div>
+                    
+            
+        
+            
+            
+                    <div class="detail-item">
+                        <p><strong>Hirarki Pengendalian Risiko adalah</strong> urutan prioritas yang wajib diikuti dalam memilih solusi keselamatan, di mana metode paling atas (eliminasi) adalah yang terbaik dan paling efektif untuk menghilangkan bahaya.</p>
+                        
+                        <div class="example-tag" style="background: #fbe9e7; border-left: 4px solid #ff5722; padding: 15px;">
+                            <strong>Penjelasan 5 Level Hirarki:</strong>
+                            <ol style="margin: 10px 0; padding-left: 20px;">
+                                <li><strong>Eliminasi:</strong> Menghilangkan sumber bahaya secara fisik (misal: membuang bahan kimia rusak).</li>
+                                <li><strong>Substitusi:</strong> Mengganti alat/bahan berbahaya dengan yang lebih aman.</li>
+                                <li><strong>Rekayasa Teknik:</strong> Memodifikasi alat atau memasang pelindung mesin (isolasi bahaya).</li>
+                                <li><strong>Administrasi:</strong> Mengatur instruksi kerja, rambu-rambu, dan rotasi jadwal kerja.</li>
+                                <li><strong>APD:</strong> Penggunaan perlengkapan pelindung (masker, helm) sebagai benteng terakhir.</li>
+                            </ol>
+                            <hr style="border: 0; border-top: 1px solid #ffccbc; margin: 10px 0;">
+                            <strong>Contoh:</strong> Menangani debu di area produksi. 
+                            Lebih baik memasang sistem penyedot debu (Rekayasa) daripada hanya mewajibkan semua orang memakai masker (APD), karena sistem penyedot menghilangkan debu dari udara secara langsung.
+                        </div>
+                    </div>
+                    
+            
+           
+            
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px; border-left: 4px solid #337;">
+                        <strong>PP No. 50 Tahun 2012 Pasal 9:</strong> Mewajibkan setiap pengusaha untuk menyusun rencana K3 berdasarkan hasil identifikasi bahaya, penilaian risiko, dan pengendalian yang sistematis.
+                    </p>
+                </div>
+            </section>
+
+            <section id="safety-tbm-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Safety Meeting & Toolbox Meeting</h2>
+            
+                    <div class="detail-item">
+                        <h3 style="color: #a52a2a;">1. Safety Meeting: Penguatan Fundamental & Integritas Data</h3>
+                        <p>Fokus utama rapat ini adalah memastikan bahwa <strong>HI-RA-PA</strong> (Hazard Identification, Risk Assessment, and Risk Planning) bukan sekadar dokumen formalitas, melainkan memiliki integritas data yang akurat sesuai kondisi lapangan.</p>
+                        
+                        <div class="example-tag">
+                            <strong>Simulasi Script Safety Meeting:</strong><br>
+                            <ul>
+                                <li><strong>Pembukaan:</strong> "Selamat pagi Bapak/Ibu pimpinan dan anggota P2K3. Hari ini kita fokus pada penguatan fundamental K3 kita, yaitu integritas data HI-RA-PA."</li>
+                                <li><strong>Isi/Pembahasan:</strong> "Kita harus memastikan setiap risiko yang tercatat di dokumen HI-RA-PA sesuai dengan temuan inspeksi terbaru. Jika data kita tidak integrit (tidak jujur/akurat), maka pengendalian yang kita rencanakan akan salah sasaran. Mari kita tinjau ulang metodologi penilaian risiko kita agar lebih fundamental."</li>
+                                <li><strong>Penutup:</strong> "Saya minta tim K3 memverifikasi ulang data lapangan minggu depan. Rapat ditutup dengan komitmen: Data Akurat, Pekerja Selamat!"</li>
+                            </ul>
+                        </div>
+            
+                        <div class="law-tag">LANDASAN HUKUM SAFETY MEETING</div>
+                        <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px;">
+                            <strong>Permenaker No. 4 Tahun 1987 Pasal 11:</strong> Menjelaskan kewajiban P2K3 untuk mengadakan rapat rutin bulanan.
+                        </p>
+                    </div>
+            
+                    <hr style="border: 1px dashed #ddd; margin: 25px 0;">
+            
+                    <div class="detail-item">
+                        <h3 style="color: #a52a2a;">2. Toolbox Meeting (TBM): Operasional Galangan Kapal</h3>
+                        <p>Pertemuan teknis harian di area kerja (point of work) untuk memberikan instruksi keselamatan spesifik sebelum memulai shift, khususnya untuk risiko tinggi di galangan kapal.</p>
+                    
+                        <div class="example-tag" style="background: #eef9ff; border-left: 4px solid #2b6cb0; padding: 20px;">
+                            <strong style="color: #2b6cb0; font-size: 16px;">💬 Simulasi Script Lengkap TBM Galangan:</strong><br>
+                            
+                            <div style="margin-top: 15px;">
+                                <p><strong>1. Pembukaan (Greetings & Doa):</strong><br>
+                                "Assalamualaikum Warahmatullahi Wabarakatuh, Selamat pagi dan salam sejahtera untuk kita semua! Semangat pagi rekan-rekan! Sebelum kita memulai aktivitas di area galangan hari ini, mari kita tundukkan kepala sejenak untuk berdoa agar seluruh pekerjaan kita berjalan lancar dan aman. Berdoa mulai... Selesai."</p>
+                    
+                                <p><strong>2. Isi & Arahan Keselamatan (The Core):</strong><br>
+                                "Rekan-rekan, hari ini agenda kita cukup padat di lambung kapal dan area deck. Mohon perhatikan poin-poin berikut:"
+                                <ul style="margin-top: 5px; padding-left: 20px;">
+                                    <li style="margin-bottom: 8px;"><strong>Hotwork (Pengelasan):</strong> Bagi tim welder, pastikan area bawah dan sekitar titik api bersih dari bahan mudah terbakar. <i>Fire Watcher</i> harus stand by dengan APAR yang siap pakai. Jangan mulai las sebelum izin kerja (Work Permit) ditandatangani.</li>
+                                    <li style="margin-bottom: 8px;"><strong>Working at Height:</strong> Cek kembali <i>Full Body Harness</i> (FBH) Anda. Pastikan <i>double lanyard</i> tidak ada yang sobek. Ingat prinsip: '100% Tie-Off', hook harus selalu tercantol saat berada di atas scaffolding atau man-basket!</li>
+                                    <li style="margin-bottom: 8px;"><strong>Housekeeping:</strong> Galangan kita banyak kabel las dan selang gas. Tolong diatur, jangan biarkan melintang di jalur jalan (Trip Hazard). Sisa elektroda wajib masuk ke wadah sampah, jangan dibuang sembarangan ke laut atau lantai kerja.</li>
+                                </ul>
+                                </p>
+                    
+                                <p><strong>3. Penutup (Safety Pledge & Semangat):</strong><br>
+                                "Apakah ada kendala alat atau kesehatan dari rekan-rekan? Jika tidak ada, mari kita kerja dengan fokus. Ingat, keluarga menunggu kita pulang dengan sehat dan utuh. Saya ingin dengar semangatnya! <br><br>
+                                <strong>Safety First!</strong> (Dijawab serentak: <i>Yes!</i>)<br>
+                                <strong>Zero Accident!</strong> (Dijawab serentak: <i>Bisa!</i>)<br><br>
+                                Oke rekan-rekan, silakan mulai bekerja dan utamakan keselamatan!"</p>
+                            </div>
+                        </div>
+                        
+                        
+                    
+                        <div class="law-tag">LANDASAN HUKUM TBM</div>
+                        <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px; border-left: 4px solid #337;">
+                            <strong>UU No. 1 Tahun 1970 Pasal 9 Ayat (1) & (2):</strong> Pengurus wajib menjelaskan pada pengurus baru/lama tentang kondisi bahaya, semua pengaman, dan APD yang wajib digunakan. TBM adalah bentuk pemenuhan kewajiban pembinaan ini.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hirapa-aspek-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">HI-RA-PA & Aspek Bahaya</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>HI (Hazard Identification) adalah</strong> proses sistematis untuk mengenali dan menemukan sumber bahaya yang ada di tempat kerja, baik dari alat, material, metode kerja, maupun lingkungan.</p>
+                        <p><strong>RA (Risk Assessment) adalah</strong> proses evaluasi untuk menentukan besarnya risiko (Level: Low, Medium, High, Extreme) dengan mengalikan nilai frekuensi kejadian (likelihood) dan keparahan yang ditimbulkan (severity).</p>
+                        <p><strong>PA (Penetapan Pengendalian) adalah</strong> langkah pengambilan keputusan untuk memilih kontrol terbaik guna menghilangkan atau memitigasi risiko hingga mencapai level yang dapat diterima (as low as reasonably practicable).</p>
+                    </div>
+            
+                    <div class="detail-item">
+                        <p><strong>Aspek Bahaya Lingkungan Kerja</strong> adalah faktor-faktor di tempat kerja yang dapat mempengaruhi kesehatan tenaga kerja. Berdasarkan Permenaker No. 5 Tahun 2018, terdapat lima kategori utama:</p>
+                        
+                        <ul style="margin-bottom: 20px; padding-left: 20px;">
+                            <li><strong>1. Faktor Fisika:</strong> Energi yang dapat menyebabkan penyakit (kebisingan, getaran, suhu ekstrem, pencahayaan, radiasi).</li>
+                            <li><strong>2. Faktor Kimia:</strong> Bahan kimia dalam bentuk gas, uap, debu, atau cairan yang bersifat toksik, korosif, atau iritan.</li>
+                            <li><strong>3. Faktor Biologi:</strong> Mikroorganisme (bakteri, virus, jamur) atau hewan berbisa yang ada di lingkungan kerja.</li>
+                            <li><strong>4. Faktor Ergonomi:</strong> Ketidaksesuaian antara desain peralatan, cara kerja, dan postur tubuh pekerja.</li>
+                            <li><strong>5. Faktor Psikologi:</strong> Interaksi antara kondisi kerja dengan kemampuan atau beban mental pekerja (stres, beban kerja berlebih).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="example-tag" style="background: #fffbe6; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
+                        <strong style="color: #e65100; font-size: 18px;">Contoh Lengkap Penerapan HI-RA-PA Berdasarkan 5 Aspek Bahaya:</strong>
+                        
+                        
+                    
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 20px; border-bottom: 1px solid #ffe58f; padding-bottom: 10px;">
+                                <strong style="color: #d46b08;">A. Aspek Fisika (Kebisingan di Ruang Mesin Kapal)</strong><br>
+                                • <strong>HI (Identifikasi):</strong> Pengukuran menunjukkan suara mesin genset mencapai 95 dB (NAB: 85 dB).<br>
+                                • <strong>RA (Penilaian):</strong> Risiko Sangat Tinggi; paparan lama mengakibatkan <i>Noise Induced Hearing Loss</i> (Tuli).<br>
+                                • <strong>PA (Pengendalian):</strong> Memasang peredam pada dinding mesin (Rekayasa), rotasi kerja tiap 4 jam (Admin), penggunaan Ear Muff (APD).
+                            </li>
+                    
+                            <li style="margin-bottom: 20px; border-bottom: 1px solid #ffe58f; padding-bottom: 10px;">
+                                <strong style="color: #d46b08;">B. Aspek Kimia (Proses Pengecatan/Painting)</strong><br>
+                                • <strong>HI (Identifikasi):</strong> Adanya uap senyawa organik (VOCs) dari thinner dan debu partikel cat.<br>
+                                • <strong>RA (Penilaian):</strong> Risiko Tinggi; dapat menyebabkan iritasi saluran pernapasan dan risiko kebakaran.<br>
+                                • <strong>PA (Pengendalian):</strong> Menggunakan cat <i>water-based</i> (Substitusi), memasang blower/ventilasi (Rekayasa), wajib Respirator Cartridge (APD).
+                            </li>
+                    
+                            <li style="margin-bottom: 20px; border-bottom: 1px solid #ffe58f; padding-bottom: 10px;">
+                                <strong style="color: #d46b08;">C. Aspek Biologi (Area Sampah/Limbah Kapal)</strong><br>
+                                • <strong>HI (Identifikasi):</strong> Adanya bakteri E. coli, nyamuk, atau jamur pada area penyimpanan limbah yang lembap.<br>
+                                • <strong>RA (Penilaian):</strong> Risiko Sedang; ancaman penyakit diare, infeksi kulit, atau malaria.<br>
+                                • <strong>PA (Pengendalian):</strong> Fogging rutin & pembersihan berkala (Sanitasi), penyediaan sabun cuci tangan dan vaksinasi bagi petugas limbah.
+                            </li>
+                    
+                            <li style="margin-bottom: 20px; border-bottom: 1px solid #ffe58f; padding-bottom: 10px;">
+                                <strong style="color: #d46b08;">D. Aspek Ergonomi (Pengangkatan Manual Material)</strong><br>
+                                • <strong>HI (Identifikasi):</strong> Pekerja mengangkat suku cadang 25kg secara berulang dengan posisi membungkuk.<br>
+                                • <strong>RA (Penilaian):</strong> Risiko Tinggi; dapat menyebabkan cedera tulang belakang (HNP) atau <i>Low Back Pain</i>.<br>
+                                • <strong>PA (Pengendalian):</strong> Menggunakan alat bantu angkat/trolley (Rekayasa), pelatihan teknik angkat beban "Power Lift" (Admin).
+                            </li>
+                    
+                            <li style="margin-bottom: 10px;">
+                                <strong style="color: #d46b08;">E. Aspek Psikologi (Target Pekerjaan & Shift Malam)</strong><br>
+                                • <strong>HI (Identifikasi):</strong> Tekanan target <i>docking</i> yang sangat cepat disertai durasi kerja 12 jam (lembur).<br>
+                                • <strong>RA (Penilaian):</strong> Risiko Tinggi; memicu <i>Fatigue</i> (kelelahan hebat) dan stres yang menurunkan fokus kerja.<br>
+                                • <strong>PA (Pengendalian):</strong> Penyesuaian jadwal shift yang manusiawi, penyediaan area istirahat yang nyaman, dan konseling karyawan.
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px; border-left: 4px solid #a52a2a;">
+                        <strong>Permenaker No. 5 Tahun 2018 Pasal 2 & 5:</strong> Pengusaha dan/atau Pengurus wajib mewujudkan lingkungan kerja yang aman, sehat, dan nyaman dengan melakukan identifikasi, penilaian, dan pengendalian faktor fisika, kimia, biologi, ergonomi, dan psikologi.
+                    </p>
+                </div>
+            </section>
+
+            <section id="confined-space-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Ruang Terbatas & Cleaning Tanki</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Gas Detector adalah</strong> alat keselamatan elektronik portable yang wajib digunakan untuk mendeteksi kualitas udara secara real-time di ruang terbatas. Berdasarkan standar Permenaker No. 5/2018 dan referensi teknis, parameter aman meliputi:</p>
+                        <ul>
+                            <li><strong>Oksigen (O2):</strong> Normal minimal <strong>19.5%</strong> (untuk bernapas) dan maksimal <strong>23.5%</strong> (untuk mencegah ledakan).</li>
+                            <li><strong>Karbon Monoksida (CO):</strong> Batas paparan normal adalah <strong>25 ppm</strong>.</li>
+                            <li><strong>Hidrogen Sulfida (H2S):</strong> Batas paparan normal adalah <strong>1 ppm</strong>.</li>
+                            <li><strong>Lower Explosive Limit (LEL):</strong> Harus di angka <strong>0%</strong> untuk memastikan tidak ada gas mudah meledak.</li>
+                        </ul>
+                        
+                    </div>
+
+                    <div class="detail-item">
+                        <p><strong>Gejala Fisiologi Manusia terhadap Dampak Gas:</strong></p>
+                        
+                        <h4 style="color: #a52a2a;">1. Dampak Kekurangan Oksigen (Asfiksia)</h4>
+                        <table class="k3-table">
+                            <tr style="background: #f4f4f4;"><th>Kadar O2</th><th>Gejala Fisiologi pada Tubuh</th></tr>
+                            <tr><td>19.5%</td><td><strong>Ambang Batas Minimum.</strong> Jika di bawah ini, jantung bekerja lebih keras.</td></tr>
+                            <tr><td>12 - 16%</td><td>Pernapasan cepat, pusing, gangguan koordinasi otot, dan kelelahan mendadak.</td></tr>
+                            <tr><td>6 - 10%</td><td>Mual, muntah, kehilangan kemampuan bergerak, dan pingsan.</td></tr>
+                            <tr><td>< 6%</td><td>Kematian dalam hitungan menit akibat kegagalan fungsi organ vital.</td></tr>
+                        </table>
+                        
+
+                        <h4 style="color: #a52a2a; margin-top:15px;">2. Dampak Karbon Monoksida (CO > 25 ppm)</h4>
+                        <p>CO bersifat <em>silent killer</em> karena tidak berbau. Gas ini mengikat hemoglobin dalam darah 200x lebih kuat dibanding oksigen.</p>
+                        <div class="warning-box">
+                            <strong>Gejala:</strong> Sakit kepala berat, kebingungan mental, mual, penglihatan kabur, dan rasa kantuk luar biasa yang berujung kematian.
+                        </div>
+
+                        <h4 style="color: #a52a2a; margin-top:15px;">3. Dampak Hidrogen Sulfida (H2S)</h4>
+                        <p>Paparan tinggi menyebabkan hilangnya indra penciuman seketika (Olfactory Fatigue).</p>
+                        <div class="example-tag"><strong>Contoh:</strong> Seorang pekerja yang masuk tanki tanpa ventilasi dan gas test akan pingsan seketika (Knockdown) karena sistem saraf pusatnya lumpuh oleh H2S.</div>
+                    </div>
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 10px; border-radius: 5px;">
+                        <strong>Kepdirjen Binwasnaker 113/2006:</strong> Mengatur prosedur teknis ijin masuk dan pengujian atmosfer di ruang terbatas.
+                    </p>
+                </div>
+            </section>
+
+            <section id="b3-materi-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Bahan Berbahaya dan Beracun (B3)</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>B3 (Bahan Berbahaya dan Beracun) adalah</strong> zat, energi, dan/atau komponen lain yang karena sifat, konsentrasi, dan/atau jumlahnya, baik secara langsung maupun tidak langsung, dapat mencemarkan atau merusak lingkungan hidup, serta membahayakan kesehatan dan kelangsungan hidup manusia.</p>
+                        
+                        <p><strong>Pengelolaan B3 yang wajib dipenuhi di tempat kerja meliputi:</strong></p>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Identifikasi & Klasifikasi:</strong> Menentukan jenis bahaya bahan (mudah meledak, beracun, korosif, dll).</li>
+                            <li><strong>Dokumentasi LDK (MSDS):</strong> Wajib menyediakan Lembar Data Keselamatan yang memuat 16 poin informasi bahan kimia.</li>
+                            <li><strong>Pelabelan & Simbol:</strong> Penempelan stiker peringatan pada wadah B3 agar pekerja waspada.</li>
+                            <li><strong>Pengendalian Teknis:</strong> Penyediaan tempat penyimpanan khusus (Gudang B3) dengan ventilasi dan <i>Spill Kit</i>.</li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #fff5f5; border-left: 4px solid #c53030; padding: 20px; margin: 15px 0;">
+                        <strong style="color: #c53030; font-size: 16px;">Contoh Aplikasi & Pengendalian B3 secara Detail:</strong>
+                        
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>1. Administrasi (MSDS/LDK):</strong> 
+                                <br>Menaruh dokumen LDK di area pengisian bahan bakar atau area <i>painting</i> agar saat terjadi kontak mata, pekerja tahu cara membilasnya (P3K spesifik bahan).
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>2. Komunikasi Bahaya (Simbol):</strong> 
+                                <br>Pemasangan simbol <strong>"Mudah Terbakar"</strong> (api) pada tangki Solar dan simbol <strong>"Korosif"</strong> pada wadah asam (H2SO4) untuk aki agar pekerja tidak mencampur bahan yang tidak kompatibel.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>3. Perlindungan Lingkungan (Secondary Containment):</strong> 
+                                <br>Pembuatan tanggul penahan atau bak penampung di bawah tangki oli. Jika tangki bocor, oli tidak akan langsung meresap ke tanah atau masuk ke drainase (laut).
+                            </li>
+            
+                            <li>
+                                <strong>4. Fasilitas Keselamatan:</strong> 
+                                <br>Penyediaan <i>Eye Wash</i> dan <i>Emergency Shower</i> di dekat area penyimpanan bahan kimia untuk tindakan darurat jika pekerja terpapar zat berbahaya.
+                            </li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>Kepmenaker No. 187 Tahun 1999:</strong> Tentang Pengendalian Bahan Kimia Berbahaya di Tempat Kerja (Kewajiban LDK & Petugas K3 Kimia).</p>
+            
+                </div>
+            </section>
+
+            <section id="scaffoldingdanstopper-materi-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Kerja di Ketinggian: Scaffolding & Stopper</h2>
+                    
+                    <div class="detail-item">
+                        <h3>1. Scaffolding (Perancah)</h3>
+                        <p><strong>Scaffolding adalah</strong> struktur platform kerja sementara yang digunakan untuk mendukung pekerja dan material. Perancah yang aman bukan hanya sekadar pipa yang disusun, tetapi harus memenuhi syarat stabilitas dan proteksi jatuh bagi orang di bawahnya.</p>
+                        
+                        
+            
+                        <div class="example-tag" style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 20px; margin-top: 15px;">
+                            <strong>A. Komponen Kritis & Fungsi:</strong>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li><strong>Base Plate & Jack Base:</strong> Fondasi utama yang menyebarkan beban tiang ke permukaan tanah agar tidak amblas (wajib menggunakan <i>sole board</i> jika tanah lunak).</li>
+                                <li><strong>Guardrail (Top & Mid Rail):</strong> Pagar pengaman setinggi 1 meter untuk mencegah pekerja terjatuh dari samping.</li>
+                                <li><strong>Toe Board (Papan Kaki):</strong> Penghalang di pinggir lantai kerja untuk mencegah kunci inggris, baut, atau material tertendang jatuh ke bawah.</li>
+                                <li><strong>Bracing (Ikatan Silang):</strong> Pipa diagonal yang berfungsi menjaga kekakuan struktur agar perancah tidak goyang atau roboh.</li>
+                            </ul>
+            
+                            <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 15px 0;">
+                            
+                            <strong>B. Prosedur Pengecekan (Inspeksi):</strong>
+                            <p>Setiap perancah wajib diperiksa oleh <i>Scaffolder</i> kompeten dan dipasang <strong>Scafftag</strong>:</p>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li>🟢 <strong>Tag Hijau:</strong> Aman digunakan sepenuhnya.</li>
+                                <li>🟡 <strong>Tag Kuning:</strong> Aman dengan syarat (misal: wajib menggunakan 100% <i>tie-off harness</i>).</li>
+                                <li>🔴 <strong>Tag Merah:</strong> BAHAYA! Dilarang keras menaiki struktur (sedang dibangun atau rusak).</li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="detail-item" style="margin-top: 30px;">
+                        <h3>2. Stopper (Fall Arrester)</h3>
+                        <p><strong>Stopper adalah</strong> alat pelindung jatuh mekanis yang dirancang untuk menghentikan jatuh bebas dalam jarak yang sangat pendek. Alat ini bekerja dengan sistem penguncian otomatis saat terjadi akselerasi/sentakan jatuh.</p>
+                        
+                        
+            
+                        <div class="example-tag" style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; margin-top: 15px;">
+                            <strong>A. Jenis Stopper yang Sering Digunakan:</strong>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li><strong>Retractable Fall Arrester (SRL):</strong> Bekerja seperti sabuk pengaman mobil. Kabel baja akan memanjang secara halus dan mengunci seketika jika ada hentakan. Sangat efektif untuk area kerja vertikal.</li>
+                                <li><strong>Rope Grab (Vertical Stopper):</strong> Alat yang dipasang pada tali <i>lifeline</i>. Alat ini mengikuti gerakan pekerja ke atas/bawah dan akan mencengkeram tali saat pekerja jatuh.</li>
+                            </ul>
+            
+                            <hr style="border: 0; border-top: 1px solid #fef3c7; margin: 15px 0;">
+            
+                            <strong>B. Cara Pengecekan Stopper sebelum Dipakai:</strong>
+                            <ol style="padding-left: 20px;">
+                                <li><strong>Uji Fungsi (Locking Test):</strong> Tarik ujung tali secara mendadak. Jika alat tidak langsung mengunci, jangan digunakan.</li>
+                                <li><strong>Inspeksi Indikator Jatuh:</strong> Periksa <i>load indicator</i> pada pengait. Jika indikator berubah warna menjadi merah atau terbuka, artinya alat sudah pernah menahan beban jatuh dan harus segera dipensiunkan.</li>
+                                <li><strong>Cek Konektor (Carabiner):</strong> Pastikan gerbang pengunci otomatis bekerja sempurna dan tidak berkarat.</li>
+                            </ol>
+                        </div>
+                    </div>
+            
+                    <div class="law-tag" style="margin-top: 25px;">LANDASAN HUKUM BERLAKU</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>Permenaker No. 1 Tahun 1980 (Pasal 12 - 32):</strong> Standar teknis perancah untuk menjamin keselamatan konstruksi bangunan.</p>
+                        <p><strong>Permenaker No. 9 Tahun 2016 (Pasal 15 & 25):</strong> Kewajiban penggunaan perangkat penahan jatuh otomatis (Stopper) pada ketinggian di atas 2 meter.</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="pesawat-uap-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Pesawat Uap, Bejana Tekan & Tanki Timbun</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Pesawat Uap (Ketel Uap):</strong> Alat yang menghasilkan uap yang dipergunakan di luar pesawatnya dengan tekanan lebih besar dari tekanan udara luar.</p>
+                        <p><strong>Bejana Tekanan:</strong> Penampung fluida baik cair maupun gas yang memiliki tekanan melebihi tekanan udara luar.</p>
+                    </div>
+            
+                    <div class="detail-item">
+                        <h3 style="color: #a52a2a;">Tanki Timbun & Konsep Segitiga Api</h3>
+                        <p>Pada penyimpanan bahan mudah terbakar di tanki timbun, pencegahan kebakaran didasarkan pada pemutusan salah satu unsur <strong>Segitiga Api (Fire Triangle)</strong>:</p>
+                        
+                        
+                        
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li><strong>Fuel (Bahan Bakar):</strong> Cairan atau gas yang tersimpan di tanki.</li>
+                            <li><strong>Oxygen (Oksigen):</strong> Udara bebas (kandungan O2 > 16% memicu api).</li>
+                            <li><strong>Heat (Panas/Sumber Nyala):</strong> Listrik statis, gesekan, atau api terbuka.</li>
+                        </ul>
+                        <div class="example-tag">Pengendalian: Inerter (pemberian gas nitrogen) untuk menghilangkan unsur Oksigen di dalam tanki.</div>
+                    </div>
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>Permenaker No. 37 Tahun 2016:</strong> Mengatur tentang K3 Bejana Tekan dan Tanki Timbun.</p>
+                        <p><strong>Undang-Undang Uap Tahun 1930 (Stoomordonnantie):</strong> Peraturan induk mengenai pengoperasian ketel uap di Indonesia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analisis-lgp-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Analisis Komprehensif: LGP Oksigen & Tenaga Teknis</h2>
+                    
+                    <div class="detail-item">
+                        <h3 style="color: #a52a2a;">LGP (Liquid Gas Plant) Oksigen</h3>
+                        <p>Analisis pada instalasi LGP Oksigen menitikberatkan pada risiko oksidasi tinggi dan tekanan ekstrem. Oksigen bukan gas yang terbakar, tetapi merupakan **oksidator kuat** yang mempercepat pembakaran secara hebat.</p>
+                        <div class="example-tag">Penting: Seluruh komponen (pipa, valve, fitting) harus bebas dari minyak/grease (Oil Free) untuk mencegah ledakan spontan saat kontak dengan oksigen murni.</div>
+                    </div>
+            
+                    <div class="detail-item">
+                        <h3 style="color: #a52a2a;">Lisensi Tenaga Teknis Khusus</h3>
+                        <p>Pekerjaan pada sistem pipa bertekanan dan konstruksi uap wajib dilakukan oleh personel berkompetensi yang dibuktikan dengan Lisensi/Buku Kerja:</p>
+                        <ul style="padding-left: 20px;">
+                            <li><strong>Juru Las (Welder):</strong> Kelas I, II, atau III sesuai dengan ketebalan dan jenis pengelasan (Permenaker No. 2/1982).</li>
+                            <li><strong>Fitter (Juru Pasang Pipa):</strong> Tenaga teknik khusus fabrikasi dan pemasangan instalasi pipa bertekanan.</li>
+                            <li><strong>Fabrikator:</strong> Entitas atau personel yang memiliki kewenangan melakukan pembuatan/perakitan unit sesuai prosedur (WPS/PQR).</li>
+                        </ul>
+                    </div>
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>Permenaker No. 2 Tahun 1982:</strong> Tentang Kualifikasi Juru Las di Tempat Kerja.</p>
+                        <p><strong>Permenaker No. 37 Tahun 2016:</strong> Tentang K3 Bejana Tekan dan Tangki Timbun (termasuk instalasi gas medik/industri).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ketinggian-materi-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Bekerja di Ketinggian (Working at Height)</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Bekerja di Ketinggian adalah</strong> semua aktivitas pekerjaan yang dilakukan oleh tenaga kerja pada tempat kerja di atas permukaan tanah atau perairan yang memiliki potensi jatuh karena perbedaan ketinggian yang dapat menyebabkan cedera, cacat, atau kematian.</p>
+                        
+                        <p><strong>Berdasarkan Permenaker No. 9 Tahun 2016, pengelolaan ketinggian meliputi:</strong></p>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Perangkat Pencegah Jatuh Kolektif:</strong> Sarana penahan jatuh yang melindungi banyak orang (<i>Safety Net</i>, pagar pengaman/<i>guardrail</i>).</li>
+                            <li><strong>Perangkat Pelindung Jatuh Perorangan:</strong> Alat yang melindungi individu secara mandiri (<i>Full Body Harness</i>, <i>Lanyard</i>, <i>Lifeline</i>).</li>
+                            <li><strong>Prosedur Izin Kerja (Work Permit):</strong> Kewajiban administrasi untuk memastikan area dan cuaca aman sebelum mulai bekerja.</li>
+                            <li><strong>Standar Kompetensi:</strong> Tenaga kerja harus memiliki lisensi K3 Ketinggian (TKPK/TKBT) yang sah.</li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #fffbe6; border-left: 4px solid #f1c40f; padding: 20px; margin: 15px 0;">
+                        <strong style="color: #937d10; font-size: 16px;">Contoh Aplikasi & Pengendalian di Ketinggian secara Detail:</strong>
+                        
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>1. Penggunaan APD Spesifik (Fall Arrest):</strong>
+                                <br>Saat bekerja di atas <i>scaffolding</i>, pekerja wajib menggunakan <strong>Full Body Harness</strong> (bukan sabuk pinggang) dengan sistem <strong>Double Lanyard & Shock Absorber</strong>.
+                                <br><i>Tujuannya:</i> Agar jika satu hook berpindah, satu hook lainnya tetap mencantol (100% tie-off).
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>2. Pengendalian Kolektif (Safety Net):</strong>
+                                <br>Pemasangan jaring pengaman (<i>safety net</i>) di sekeliling area terbuka pada proyek gedung bertingkat untuk menangkap pekerja atau material yang jatuh secara tidak sengaja.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #ccc; padding-bottom: 10px;">
+                                <strong>3. Jalur Penambat (Lifeline):</strong>
+                                <br>Pemasangan sling baja (<i>horizontal/vertical lifeline</i>) sebagai tempat mencantolkan hook FBH saat berjalan di area yang tidak memiliki pagar pengaman (misal: di atas tanki atau atap).
+                            </li>
+            
+                            <li>
+                                <strong>4. Prosedur Darurat (Rescue):</strong>
+                                <br>Menyiapkan tim penyelamat dan peralatan <i>rescue</i> di lapangan. Jika terjadi pekerja tergantung di harness, evakuasi harus dilakukan kurang dari 15 menit untuk mencegah <i>Suspension Trauma</i>.
+                            </li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <strong>Permenaker No. 9 Tahun 2016:</strong> Regulasi komprehensif yang mengatur tentang tangga, perancah (scaffolding), akses tali, serta kewajiban pengusaha dalam menyediakan peralatan penahan jatuh yang telah lulus uji standar (SNI/ANSI).
+                    </p>
+                </div>
+            </section>
+
+            <section id="pesawat-k3-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Pesawat Angkat dan Angkut (PAA)</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Pesawat Angkat dan Angkut adalah</strong> peralatan teknik yang memiliki risiko tinggi saat dioperasikan, digunakan untuk mengangkat, memindahkan muatan secara vertikal maupun horizontal, serta mengangkut barang atau orang dengan aman.</p>
+                        
+                        <p><strong>Penggolongan PAA meliputi:</strong></p>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Pesawat Angkat:</strong> Peralatan untuk mengangkat beban (Crane, Hoist, Takel, Ekskavator).</li>
+                            <li><strong>Pesawat Angkut:</strong> Peralatan untuk memindahkan beban (Forklift, Loader, Truk, Konveyor).</li>
+                            <li><strong>Alat Bantu Angkat (Rigging):</strong> Alat yang menghubungkan beban dengan pesawat angkat (Sling, Shackle, Hook).</li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 20px; margin: 15px 0;">
+                        <strong style="color: #166534; font-size: 16px;">Penjelasan Detil & Syarat Kelaikan Teknis:</strong>
+                        
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #22c55e; padding-bottom: 10px;">
+                                <strong>1. Administrasi & Legalitas (SILO & SIO):</strong>
+                                <br>Setiap unit wajib memiliki <strong>SILO</strong> (Surat Izin Layak Operasi) hasil riksa uji PJK3. Operator wajib memiliki <strong>SIO</strong> (Surat Izin Operator) resmi dari Kemnaker RI sesuai klasifikasi kapasitas alatnya.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #22c55e; padding-bottom: 10px;">
+                                <strong>2. Beban Kerja Aman (Safe Working Load - SWL):</strong>
+                                <br>Dilarang keras mengangkat beban melebihi kapasitas **SWL** yang tertera pada alat/sling. Pengangkatan harus mengacu pada <i>Load Chart</i> (tabel beban) yang tersedia di kabin operator.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #22c55e; padding-bottom: 10px;">
+                                <strong>3. Alat Pengaman & Proteksi:</strong>
+                                <br>Alat wajib dilengkapi dengan <i>Anti Two-Block</i> (pada crane), <i>Load Moment Indicator</i> (LMI), rem otomatis, lampu rotari, dan alarm mundur yang berfungsi baik untuk mencegah tabrakan.
+                            </li>
+            
+                            <li>
+                                <strong>4. Pemeriksaan Harian (Pre-Use Check):</strong>
+                                <br>Sebelum bekerja, operator wajib memeriksa kebocoran hidrolik, kondisi ban/rantai, serta memastikan area radius putar bebas dari personil yang tidak berkepentingan (Barikade area).
+                            </li>
+                        </ul>
+            
+                        <hr style="margin: 15px 0; border: 0; border-top: 2px solid #bbf7d0;">
+                        
+                        <strong>Contoh Nyata di Lapangan:</strong> 
+                        <br>Pada operasional <strong>Mobile Crane</strong> di area konstruksi galangan: 
+                        <br>• Crane harus berdiri di landasan yang stabil (menggunakan <i>Outrigger</i> dan <i>Pad</i>).
+                        <br>• Sling yang digunakan tidak boleh ada kawat yang putus (<i>Wire Rope Inspection</i>).
+                        <br>• Jika beban seberat 10 Ton, maka Crane berkapasitas 25 Ton hanya boleh bekerja pada radius tertentu sesuai tabel beban agar tidak terbalik.
+                    </div>
+            
+                    
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <p style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <strong>Permenaker No. 8 Tahun 2020:</strong> Merupakan regulasi terbaru tentang Keselamatan dan Kesehatan Kerja Pesawat Angkat dan Pesawat Angkut yang mengatur kewajiban pemilik untuk melakukan pengujian secara berkala (Riksa Uji) minimal 1 tahun sekali.
+                    </p>
+                </div>
+            </section>
+
+            <section id="sanksi-k3-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Sanksi Hukum & Penegakan K3</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Sanksi Hukum K3 adalah</strong> instrumen yuridis yang digunakan oleh pemerintah untuk memaksakan kepatuhan terhadap standar keselamatan dan kesehatan kerja. Penegakan hukum ini bertujuan untuk melindungi hak dasar pekerja atas rasa aman dan menjamin keberlangsungan operasional perusahaan dari kerugian besar.</p>
+                        
+                        <p><strong>Mekanisme Penegakan Hukum K3 di Indonesia:</strong></p>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Pengawasan Preventif:</strong> Pemeriksaan rutin oleh Pengawas K3 Spesialis (Disnaker) terhadap dokumen, peralatan, dan lingkungan kerja.</li>
+                            <li><strong>Pengawasan Represif:</strong> Pemberian nota pemeriksaan atau peringatan tertulis jika ditemukan ketidaksesuaian standar.</li>
+                            <li><strong>Penyidikan (Pro-Justitia):</strong> Proses hukum oleh Penyidik Pegawai Negeri Sipil (PPNS) K3 bekerja sama dengan Kepolisian jika terjadi tindak pidana kecelakaan kerja.</li>
+                        </ul>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #fff1f2; border-left: 4px solid #e11d48; padding: 20px; margin: 15px 0;">
+                        <strong style="color: #9f1239; font-size: 16px;">Klasifikasi Sanksi & Contoh Detail:</strong>
+                        
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fda4af; padding-bottom: 10px;">
+                                <strong>1. Sanksi Pidana (Kurungan & Denda):</strong>
+                                <br>Merujuk pada <strong>Pasal 15 UU No. 1/1970</strong>. Meskipun nilai nominal denda dalam UU lama tergolong kecil, namun status "Terpidana" bagi pimpinan perusahaan memberikan dampak buruk permanen pada kredibilitas bisnis.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fda4af; padding-bottom: 10px;">
+                                <strong>2. Sanksi Administratif (Operasional):</strong>
+                                <br>Pengawas K3 berwenang untuk melakukan <strong>Pelarangan Operasional Alat</strong> (misal: Crane disegel dengan <i>Yellow Line</i>) atau <strong>Penutupan Area Kerja</strong> sampai perusahaan memenuhi syarat teknis yang diminta.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fda4af; padding-bottom: 10px;">
+                                <strong>3. Sanksi Perdata & Kompensasi:</strong>
+                                <br>Pihak keluarga korban dapat menuntut ganti rugi materil dan immateril jika kecelakaan terbukti akibat kelalaian (<i>negligence</i>) perusahaan dalam menyediakan sistem kerja aman.
+                            </li>
+            
+                            <li>
+                                <strong>4. Sanksi Bisnis (Dampak Turunan):</strong>
+                                <br>Perusahaan yang memiliki catatan kecelakaan fatal akan sulit lulus dalam proses <i>Pre-Qualification</i> tender, kehilangan sertifikasi ISO/SMK3, dan mengalami kenaikan premi asuransi ketenagakerjaan.
+                            </li>
+                        </ul>
+            
+                        <hr style="margin: 15px 0; border: 0; border-top: 2px solid #fecdd3;">
+                        
+                        <strong>Contoh Kasus Penegakan:</strong> 
+                        <br>Sebuah perusahaan galangan kapal membiarkan pekerjanya melakukan <i>blasting</i> tanpa masker respirator yang sesuai. 
+                        <br>• <strong>Temuan:</strong> Pengawas K3 menemukan banyak pekerja sesak napas (potensi PAK).
+                        <br>• <strong>Tindakan:</strong> Pengawas menerbitkan Nota Pemeriksaan 1. Jika diabaikan, area <i>blasting</i> ditutup sementara (Sanksi Administratif) dan pimpinan perusahaan dipanggil untuk penyidikan (Sanksi Pidana).
+                    </div>
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>1. UU No. 1 Tahun 1970 Pasal 15:</strong> Mengatur ancaman hukuman bagi pelanggar peraturan K3.</p>
+                        <p><strong>2. UU No. 13 Tahun 2003 (Ketenagakerjaan) Pasal 190:</strong> Mengatur sanksi administratif berupa teguran, pembatalan kegiatan, hingga pencabutan izin usaha.</p>
+                        <p><strong>3. Permenaker No. 33 Tahun 2016:</strong> Tata cara pengawasan ketenagakerjaan dan penegakan hukum di lapangan.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="investigasi-detail" class="page">
+                <div class="card">
+                    <h2 class="section-title">Investigasi & Analisis Kecelakaan Kerja</h2>
+                    
+                    <div class="detail-item">
+                        <p><strong>Investigasi Kecelakaan Kerja adalah</strong> serangkaian kegiatan untuk mencari fakta dan penyebab terjadinya kecelakaan kerja guna mencegah kejadian serupa terulang di masa depan. Fokus utama investigasi bukanlah mencari kesalahan seseorang (<i>blaming</i>), melainkan mencari kelemahan sistem (<i>root cause</i>).</p>
+                        
+                        <p><strong>Langkah Tanggap Darurat Saat Terjadi Kecelakaan:</strong></p>
+                        <ol style="margin-bottom: 15px; padding-left: 20px;">
+                            <li><strong>Pertolongan Pertama:</strong> Amankan korban dan berikan P3K atau segera evakuasi ke medis.</li>
+                            <li><strong>Amankan Area (Lakukan Barikade):</strong> Pasang <i>safety line</i> agar TKP tidak berubah untuk kebutuhan penyelidikan.</li>
+                            <li><strong>Lapor Atasan/HSE:</strong> Segera informasikan kepada tim keselamatan dan manajemen.</li>
+                            <li><strong>Wajib Lapor Instansi:</strong> Melaporkan ke Disnaker dan BPJS Ketenagakerjaan maksimal 2x24 jam.</li>
+                        </ol>
+                    </div>
+            
+                    
+            
+                    <div class="example-tag" style="background: #fff7ed; border-left: 4px solid #ea580c; padding: 20px; margin: 15px 0;">
+                        <strong style="color: #9a3412; font-size: 16px;">Metode Analisis 5W + 1H & Root Cause:</strong>
+                        
+                        <ul style="margin-top: 15px; list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fdba74; padding-bottom: 10px;">
+                                <strong>1. Who, Where, When:</strong> Siapa korbannya, di mana lokasi tepatnya, dan jam berapa kejadiannya.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fdba74; padding-bottom: 10px;">
+                                <strong>2. What & How (Kronologi):</strong> Apa yang sedang dikerjakan dan bagaimana urutan kejadiannya hingga terjadi kontak cidera.
+                            </li>
+                            
+                            <li style="margin-bottom: 15px; border-bottom: 1px dotted #fdba74; padding-bottom: 10px;">
+                                <strong>3. Why (Akar Masalah):</strong> Menggunakan metode "5 Why" (Bertanya 'Kenapa' sebanyak 5 kali sampai menemukan penyebab dasar).
+                            </li>
+                        </ul>
+            
+                        <hr style="margin: 15px 0; border: 0; border-top: 2px solid #fed7aa;">
+                        
+                        <strong>Contoh Kasus Nyata: Pekerja Jatuh dari Perancah (Scaffolding)</strong>
+                        <br>• <strong>Kejadian:</strong> Pekerja jatuh saat memplester dinding setinggi 4 meter.
+                        <br>• <strong>Investigasi (5 Why):</strong>
+                        <br>1. <i>Kenapa jatuh?</i> Karena papan lantai kerja (catwalk) patah.
+                        <br>2. <i>Kenapa patah?</i> Karena papan kayu sudah lapuk.
+                        <br>3. <i>Kenapa papan lapuk digunakan?</i> Karena tidak ada inspeksi alat sebelum digunakan.
+                        <br>4. <i>Kenapa tidak diinspeksi?</i> Karena prosedur <i>Pre-use Checklist</i> tidak dijalankan oleh pengawas.
+                        <br>5. <i>Kenapa tidak dijalankan?</i> (Akar Masalah): Kurangnya pelatihan K3 bagi pengawas dan lemahnya fungsi kontrol manajemen terhadap prosedur kerja.
+                        <br><br>
+                        <strong style="color: #c2410c;">Tindakan Perbaikan:</strong> Mengganti papan kayu dengan material metal (<i>steel plank</i>) dan memberikan sanksi serta pelatihan ulang bagi pengawas lapangan.
+                    </div>
+            
+                    
+            
+                    <div class="law-tag">LANDASAN HUKUM</div>
+                    <div style="font-size: 14px; background: #f1f1f1; padding: 15px; border-radius: 5px; border-left: 4px solid #337;">
+                        <p><strong>Permenaker No. 3 Tahun 1998:</strong> Mengatur tata cara pelaporan dan pemeriksaan kecelakaan kerja. Pengurus atau pengusaha wajib melaporkan tiap kecelakaan kerja yang terjadi di tempat kerja yang dipimpinnya.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="landasan" class="page">
+                <div class="card">
+                    <h1 style="color: #a52a2a; border-bottom: 2px solid #eee; padding-bottom: 10px;">Daftar Landasan Hukum K3</h1>
+                    
+                    <div style="margin: 20px 0;">
+                        <label for="lawSearch" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #444;">
+                        Search...
+                        </label>
+                        <input type="text" id="lawSearch" onkeyup="filterLawTable()" 
+                            placeholder="Cari Materi, Regulasi, Tentang, Pasal, & Deskripsi
+                            style="width: 100%; padding: 12px 15px; border: 2px solid #a52a2a; border-radius: 8px; outline: none; font-size: 14px; box-sizing: border-box; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    </div>
+
+                    <div class="table-container" style="overflow-x: auto; border-radius: 10px; border: 1px solid #ddd;">
+                        <table id="lawTable" class="k3-table" style="width: 100%; border-collapse: collapse; font-size: 14px; background-color: white;">
+                            <thead>
+                                <tr style="background-color: #a52a2a; color: white;">
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Materi Terkait</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Regulasi (UU/Permen)</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Tentang</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Pasal</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Deskripsi / Poin Utama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. Dasar-Dasar K3</td>
+                                    <td>UU No. 1 Tahun 1970</td>
+                                    <td>Keselamatan Kerja</td>
+                                    <td>Pasal 3 & 9</td>
+                                    <td>Syarat-syarat keselamatan kerja untuk mencegah kecelakaan & PAK serta kewajiban pembinaan tenaga kerja secara menyeluruh.</td>
+                                </tr>
+                                <tr>
+                                    <td>2. Metode (PDCA, JSA, HIRADC)</td>
+                                    <td>PP No. 50 Tahun 2012</td>
+                                    <td>Penerapan SMK3</td>
+                                    <td>Pasal 6 - 16</td>
+                                    <td>Siklus manajemen berkelanjutan (Plan-Do-Check-Act/PDCA) dan kewajiban audit sistem manajemen K3 perusahaan.</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Safety Meeting & TBM</td>
+                                    <td>Permenaker No. 4 Tahun 1987 & UU 1/1970</td>
+                                    <td>P2K3 & Pembinaan</td>
+                                    <td>Pasal 11 (Permen) & Pasal 9 (UU)</td>
+                                    <td>Kewajiban rapat rutin P2K3 dan instruksi langsung (Toolbox Meeting) mengenai potensi bahaya dan APD sebelum bekerja.</td>
+                                </tr>
+                                <tr>
+                                    <td>4. HI-RA-PA & Aspek Bahaya</td>
+                                    <td>Permenaker No. 5 Tahun 2018</td>
+                                    <td>Lingkungan Kerja</td>
+                                    <td>Pasal 2 & 5</td>
+                                    <td>Wajib melakukan pengukuran dan pengendalian faktor Fisika, Kimia, Biologi, Ergonomi, dan Psikologi di tempat kerja.</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Ruang Terbatas & Tanki</td>
+                                    <td>Kepdirjen Binwasnaker No. 113/2006</td>
+                                    <td>Confined Space</td>
+                                    <td>Pedoman Teknis</td>
+                                    <td>Standar atmosfer aman (O2 19.5%-23.5%), deteksi gas beracun (CO/H2S), dan prosedur ijin masuk (Work Permit).</td>
+                                </tr>
+                                <tr>
+                                    <td>6. Pengelolaan B3</td>
+                                    <td>Kepmenaker No. 187 Tahun 1999</td>
+                                    <td>Pengendalian Bahan Kimia Berbahaya</td>
+                                    <td>Pasal 3, 4 & 16</td>
+                                    <td>Penyediaan MSDS, Label, penunjukan Petugas & Ahli K3 Kimia, serta pengendalian teknis tumpahan bahan berbahaya.</td>
+                                </tr>
+                                <tr>
+                                    <td>7. Kerja di Ketinggian</td>
+                                    <td>Permenaker No. 9 Tahun 2016</td>
+                                    <td>Bekerja di Ketinggian</td>
+                                    <td>Pasal 1 - 45</td>
+                                    <td>Standar alat pelindung jatuh (Full Body Harness), prosedur akses tali, perancah, dan kompetensi tenaga kerja di area tinggi.</td>
+                                </tr>
+                                <tr>
+                                    <td>8. Scaffolding & Stopper</td>
+                                    <td>Permenaker No. 1/1980 & No. 9/2016</td>
+                                    <td>Konstruksi & Perlindungan Jatuh</td>
+                                    <td>Pasal 12-32 & 25</td>
+                                    <td>Kewajiban perancah stabil (Scafftag), guardrail, toe board, dan alat penahan jatuh otomatis (Stopper/Fall Arrester).</td>
+                                </tr>
+                                <tr>
+                                    <td>9. Pesawat Uap & Bejana Tekan</td>
+                                    <td>Permenaker No. 37 Tahun 2016 & UU Uap 1930</td>
+                                    <td>Bejana Tekan & Ketel Uap</td>
+                                    <td>Pasal 1 - 95</td>
+                                    <td>Pemeriksaan berkala, syarat keamanan tanki timbun, dan pengendalian risiko melalui pemutusan rantai Segitiga Api (Fire Triangle).</td>
+                                </tr>
+                                
+                                
+                                [Image of the fire triangle]
+                                
+                                <tr>
+                                    <td>10. Analisis LGP & Tenaga Teknis</td>
+                                    <td>Permenaker No. 37/2016 & No. 2/1982</td>
+                                    <td>LGP Oksigen & Juru Las</td>
+                                    <td>Pasal 1-7 (Welder) & Pasal 37 (LGP)</td>
+                                    <td>Standar keamanan instalasi LGP Oksigen (Oil Free) serta syarat lisensi/Buku Kerja bagi Juru Las (Welder), Fitter, dan Fabrikator.</td>
+                                </tr>
+                                <tr>
+                                    <td>11. Pesawat Angkat Angkut</td>
+                                    <td>Permenaker No. 8 Tahun 2020</td>
+                                    <td>Alat Angkat & Angkut</td>
+                                    <td>Pasal 5 & 17</td>
+                                    <td>Kewajiban riksa uji berkala (SILO) dan kepemilikan Lisensi/Buku Kerja (SIO) bagi operator forklift/crane.</td>
+                                </tr>
+                                <tr>
+                                    <td>12. Sanksi Hukum K3</td>
+                                    <td>UU No. 1/1970 & UU No. 13/2003</td>
+                                    <td>Penegakan Hukum</td>
+                                    <td>Pasal 15 & Pasal 190</td>
+                                    <td>Sanksi Pidana (kurungan/denda) serta Sanksi Administratif berupa segel alat hingga pencabutan izin usaha bagi pelanggar K3.</td>
+                                </tr>
+                                <tr>
+                                    <td>13. Investigasi Kecelakaan</td>
+                                    <td>Permenaker No. 3 Tahun 1998</td>
+                                    <td>Laporan Kecelakaan</td>
+                                    <td>Pasal 2, 7 & 11</td>
+                                    <td>Kewajiban melaporkan kecelakaan < 2x24 jam dan melakukan investigasi akar masalah menggunakan metode 5W+1H / RCA.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
