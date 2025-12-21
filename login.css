@@ -1,0 +1,222 @@
+:root {
+    --maroon: #a52a2a;
+    --dark-maroon: #4a0e0e;
+    --gold: #f1c40f;
+    --bg-dark: #0f172a;
+    --glass-white: rgba(255, 255, 255, 0.92);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+    /* Background Image AK3U dengan Overlay */
+    background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(74, 14, 14, 0.8)), 
+                url('https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Animasi Efek Cahaya Bergerak */
+body::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(241, 196, 15, 0.1) 0%, transparent 60%);
+    animation: moveLight 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveLight {
+    0% { transform: translate(-30%, -30%); }
+    50% { transform: translate(10%, 10%); }
+    100% { transform: translate(-30%, -30%); }
+}
+
+/* Container Utama Login */
+.login-box {
+    background: var(--glass-white);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 420px;
+    border-top: 6px solid var(--maroon);
+    border-bottom: 4px solid var(--gold);
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.login-box:hover {
+    transform: translateY(-5px);
+}
+
+.header-login { 
+    text-align: center; 
+    margin-bottom: 1.8rem; 
+}
+
+.shield-logo { 
+    font-size: 3.5rem; 
+    color: var(--maroon);
+    margin-bottom: 0.8rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.header-login h1 { 
+    font-size: 1.6rem; 
+    color: var(--dark-maroon); 
+    font-weight: 800; 
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.header-login p { 
+    font-size: 0.85rem; 
+    color: #555; 
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Form Styling */
+.input-group { 
+    margin-bottom: 1.2rem; 
+}
+
+.input-group label { 
+    display: block; 
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    color: #444; 
+    margin-bottom: 8px; 
+    text-transform: uppercase; 
+}
+
+.input-container { 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+}
+
+.input-container i:first-child { 
+    position: absolute; 
+    left: 16px; 
+    color: var(--maroon); 
+    font-size: 1.1rem;
+}
+
+.input-container input { 
+    width: 100%; 
+    padding: 15px 45px; 
+    border: 2px solid #eee; 
+    border-radius: 14px; 
+    outline: none; 
+    font-size: 16px; /* 16px mencegah auto-zoom di iOS */
+    transition: 0.3s;
+    background: #fdfdfd;
+}
+
+.input-container input:focus { 
+    border-color: var(--maroon); 
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(165, 42, 42, 0.1); 
+}
+
+#togglePassword { 
+    position: absolute; 
+    right: 16px; 
+    cursor: pointer; 
+    color: #999; 
+    padding: 5px;
+}
+
+/* Button */
+.btn-primary { 
+    width: 100%; 
+    padding: 16px; 
+    background: var(--maroon); 
+    color: white; 
+    border: none; 
+    border-radius: 14px; 
+    font-weight: bold; 
+    font-size: 1rem;
+    cursor: pointer; 
+    transition: 0.3s;
+    margin-top: 1rem;
+    box-shadow: 0 8px 15px rgba(165, 42, 42, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary:hover { 
+    background: var(--dark-maroon); 
+    box-shadow: 0 10px 20px rgba(165, 42, 42, 0.3);
+}
+
+.btn-primary:active { transform: scale(0.98); }
+
+/* Error Alert */
+.alert-error {
+    display: none; 
+    background: #fff1f0; 
+    color: #d8544f; 
+    padding: 12px; 
+    border-radius: 12px; 
+    font-size: 0.85rem; 
+    margin-bottom: 1.5rem; 
+    border: 1px solid #ffa39e; 
+    text-align: center;
+    animation: shake 0.4s ease;
+}
+
+/* Footer */
+.footer-login {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer-login p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Animasi Guncangan Jika Salah */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 480px) {
+    body { padding: 15px; }
+    .login-box { 
+        padding: 2rem 1.5rem; 
+        border-radius: 20px;
+    }
+    .header-login h1 { font-size: 1.4rem; }
+    .shield-logo { font-size: 3rem; }
+    .btn-primary { padding: 14px; }
+}

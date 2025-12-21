@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Buku K3 Digital</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <div class="header-login">
+                <span class="shield-logo">🛡️</span>
+                <h1>Akses Buku K3</h1>
+                <p>Verifikasi kredensial untuk melanjutkan</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-container">
+                        <i class="fas fa-user-circle"></i>
+                        <input type="text" id="username" placeholder="Masukkan username" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Masukkan password" required>
+                        <i class="fas fa-eye-slash" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <div id="error-message" class="alert-error"></div>
+
+                <button type="submit" id="loginBtn" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> MASUK KE DASHBOARD
+                </button>
+            </form>
+
+            <div class="footer-login" style="text-align: center; width: 100%; padding: 20px 0;">
+                <p style="margin: 0;">Digital Safety Compliance</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
